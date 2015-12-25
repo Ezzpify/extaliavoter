@@ -30,34 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Start = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txt_Username = new System.Windows.Forms.TextBox();
+            this.cb_Xtreme = new System.Windows.Forms.CheckBox();
+            this.cb_Ultimate = new System.Windows.Forms.CheckBox();
+            this.timer_Vote = new System.Windows.Forms.Timer(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.dateLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_Start
             // 
-            this.button1.Location = new System.Drawing.Point(249, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_Start.Location = new System.Drawing.Point(256, 7);
+            this.btn_Start.Name = "btn_Start";
+            this.btn_Start.Size = new System.Drawing.Size(75, 22);
+            this.btn_Start.TabIndex = 0;
+            this.btn_Start.Text = "Start";
+            this.btn_Start.UseVisualStyleBackColor = true;
+            this.btn_Start.Click += new System.EventHandler(this.btn_Start_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 11);
+            this.label1.Location = new System.Drawing.Point(12, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 1;
@@ -72,114 +70,79 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Sites:";
             // 
-            // textBox1
+            // txt_Username
             // 
-            this.textBox1.Location = new System.Drawing.Point(60, 8);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(163, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "<username>";
+            this.txt_Username.Location = new System.Drawing.Point(87, 8);
+            this.txt_Username.Name = "txt_Username";
+            this.txt_Username.Size = new System.Drawing.Size(163, 20);
+            this.txt_Username.TabIndex = 3;
             // 
-            // checkBox1
+            // cb_Xtreme
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(51, 37);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(89, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "GTop (3,000)";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cb_Xtreme.AutoSize = true;
+            this.cb_Xtreme.Checked = true;
+            this.cb_Xtreme.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_Xtreme.Location = new System.Drawing.Point(87, 38);
+            this.cb_Xtreme.Name = "cb_Xtreme";
+            this.cb_Xtreme.Size = new System.Drawing.Size(95, 17);
+            this.cb_Xtreme.TabIndex = 5;
+            this.cb_Xtreme.Text = "Xtreme (2,000)";
+            this.cb_Xtreme.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // cb_Ultimate
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(139, 37);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(95, 17);
-            this.checkBox2.TabIndex = 5;
-            this.checkBox2.Text = "Xtreme (2,000)";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.cb_Ultimate.AutoSize = true;
+            this.cb_Ultimate.Checked = true;
+            this.cb_Ultimate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_Ultimate.Location = new System.Drawing.Point(87, 61);
+            this.cb_Ultimate.Name = "cb_Ultimate";
+            this.cb_Ultimate.Size = new System.Drawing.Size(100, 17);
+            this.cb_Ultimate.TabIndex = 6;
+            this.cb_Ultimate.Text = "Ultimate (1,000)";
+            this.cb_Ultimate.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // timer_Vote
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(231, 37);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(100, 17);
-            this.checkBox3.TabIndex = 6;
-            this.checkBox3.Text = "Ultimate (1,000)";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.timer_Vote.Interval = 60000;
+            this.timer_Vote.Tick += new System.EventHandler(this.timer_Vote_Tick);
             // 
-            // label3
+            // statusStrip1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 70);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Total NX:";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 90);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(353, 22);
+            this.statusStrip1.TabIndex = 11;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // label4
+            // dateLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(57, 70);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "n/a";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(186, 70);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "none";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(136, 70);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Last vote:";
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(78, 17);
+            this.dateLabel.Text = "Last vote: n/a";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 99);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(353, 112);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.cb_Ultimate);
+            this.Controls.Add(this.cb_Xtreme);
+            this.Controls.Add(this.txt_Username);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_Start);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(369, 138);
             this.MinimumSize = new System.Drawing.Size(369, 138);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExtaliaMS Auto voter";
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,18 +150,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Start;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox txt_Username;
+        private System.Windows.Forms.CheckBox cb_Xtreme;
+        private System.Windows.Forms.CheckBox cb_Ultimate;
+        private System.Windows.Forms.Timer timer_Vote;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel dateLabel;
     }
 }
 

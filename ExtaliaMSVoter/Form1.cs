@@ -1,141 +1,99 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Net;
 using System.Net.Http;
 using System.Collections.Generic;
 
 namespace ExtaliaMSVoter
 {
+
+    /// <summary>
+    /// Fuck Jafel
+    /// </summary>
     public partial class Form1 : Form
     {
-        public bool bEnabled = false;
+        /// <summary>
+        /// General variables
+        /// </summary>
+        private bool bEnabled;
 
-        // public bool bGTop = false;
-        public bool bXtreme = true;
-        public bool bUltimate = true;
 
-        public string url = "http://extalia.net/vote?true";
-
+        /// <summary>
+        /// Class constructor
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
-
-            recalcnx();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+
+        /// <summary>
+        /// Async post to vote on the website
+        /// </summary>
+        /// <param name="site">Site to vote on</param>
+        private async void Vote(string site)
         {
-            if(checkBox1.Checked)
-            {
-                checkBox1.Checked = false;
-
-                MessageBox.Show("Gtop100 requires clearing a captcha, so we can't do that, sorry.", "nope :(");
-            }
-
-            /*bGTop = checkBox1.Checked;
-
-            recalcnx();*/
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            bXtreme = checkBox2.Checked;
-
-            recalcnx();
-        }
-
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            bUltimate = checkBox3.Checked;
-
-            recalcnx();
-        }
-
-        public void recalcnx()
-        {
-            int iNX = 0;
-            
-            /*if(bGTop)
-            {
-                iNX += 3;
-            }*/
-
-            if(bXtreme)
-            {
-                iNX += 2;
-            }
-
-            if(bUltimate)
-            {
-                iNX += 1;
-            }
-
-            // quality Xd
-            if(iNX == 0)
-            {
-                label4.Text = "0";
-            }
-
-            else
-            {
-                label4.Text = iNX + ",000";
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if(textBox1.Text == "<username>")
-            {
-                MessageBox.Show("Enter your username.", "aww");
-
-                return;
-            }
-
-            bEnabled = !bEnabled;
-            timer1.Enabled = bEnabled;
-
-            textBox1.ReadOnly = bEnabled;
-
-            if(bEnabled)
-            {
-                timer1_Tick(timer1, EventArgs.Empty);
-            }
-
-            button1.Text = (bEnabled? "Stop":"Start");
-        }
-
-        private async void vote(string site)
-        {
-            using(var client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 var values = new Dictionary<string, string>
-                    {
-                       {"account", textBox1.Text},
-                       {"toplist", site}
-                    };
+                {
+                    { "account", txt_Username.Text },
+                    { "toplist", site }
+                };
 
                 var content = new FormUrlEncodedContent(values);
-
-                var response = await client.PostAsync(url, content);
+                var response = await client.PostAsync("http://extalia.net/vote?true", content);
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+
+        /// <summary>
+        /// Start/Stop button
+        /// This will start or stop the voting process
+        /// </summary>
+        private void btn_Start_Click(object sender, EventArgs e)
         {
-            DateTime date = DateTime.Now;
-
-            label5.Text = (date.ToLongTimeString() + " (" + date.ToShortDateString() + ")");
-
-
-            if(bXtreme)
+            /*Username box is empty*/
+            if (txt_Username.Text.Length == 0)
             {
-                vote("xtreme");
+                MessageBox.Show("Please enter your username.", "Error");
+                txt_Username.Focus(); return;
             }
-            
-            if(bUltimate)
+
+            /*Set messy variables*/
+            bEnabled = !bEnabled;
+            if (bEnabled)
             {
-                vote("ultimate");
+                /*Force a tick if the timer is turned on*/
+                ProcessTick();
             }
+
+            /*Enable timer and update ui*/
+            timer_Vote.Enabled      = bEnabled;
+            txt_Username.ReadOnly   = bEnabled;
+            btn_Start.Text          = bEnabled ? "Stop" : "Start";
+        }
+
+
+        /// <summary>
+        /// Main timer event
+        /// </summary>
+        private void timer_Vote_Tick(object sender, EventArgs e)
+        {
+            ProcessTick();
+        }
+
+
+        /// <summary>
+        /// Calls the vote to the website
+        /// </summary>
+        private void ProcessTick()
+        {
+            /*Set last date voted*/
+            dateLabel.Text = string.Format("{0} ({1})", DateTime.Now.ToLongTimeString(), DateTime.Now.ToShortDateString());
+
+            /*Vote*/
+            if (cb_Ultimate.Checked) { Vote("ultimate"); }
+            if (cb_Xtreme.Checked) { Vote("xtreme"); }
         }
     }
 }
